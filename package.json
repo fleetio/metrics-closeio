@@ -1,0 +1,19 @@
+{
+  "name": "metrics-closeio",
+  "version": "0.0.1",
+  "description": "Cloud.io plugin for segmentio/metrics",
+  "dependencies": {
+    "close.io": "elasticsales/closeio-node"
+  },
+  "keywords": [
+    "metrics",
+    "closeio",
+    "close.io",
+    "API"
+  ],
+  "repository" : {
+    "type": "git",
+    "url": "git@github.com:rarestep/metrics-closeio.git"
+  },
+  "homepage": "https://github.com/rarestep/metrics-closeio.git"
+}
