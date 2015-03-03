@@ -1,7 +1,7 @@
 {
   "name": "metrics-closeio",
   "version": "0.0.1",
-  "description": "Cloud.io plugin for segmentio/metrics",
+  "description": "Close.io plugin for segmentio/metrics",
   "dependencies": {
     "close.io": "elasticsales/closeio-node"
   },
