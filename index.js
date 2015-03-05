@@ -1,6 +1,7 @@
 module.exports = function (apiKey) {
   var Closeio = require('close.io')
   var closeio = new Closeio(apiKey)
+  var debug = require('debug')('metrics:closeio')
 
   return function (metrics) {
     var createdLastWeek = 'date_created < "1 week ago"'
@@ -51,7 +52,7 @@ module.exports = function (apiKey) {
     closeio._get(path, { _fields: '', query: query })
       .then(function (results) {
         metrics.set(key, results[prop])
-      })
+      }, debugError)
   }
 
   function setValueOfWonOpportunitiesThisMonthByUser() {
@@ -85,7 +86,11 @@ module.exports = function (apiKey) {
           if (results.total_results > lastCount) {
             aggregateWonOpportunityValues(lastCount)
           }
-        })
+        }, debugError)
     }
+  }
+
+  function debugError(error) {
+    debug('Error: %s', error)
   }
 }

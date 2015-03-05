@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Close.io plugin for segmentio/metrics",
   "dependencies": {
-    "close.io": "elasticsales/closeio-node"
+    "close.io": "elasticsales/closeio-node",
+    "debug": "~2.1.2"
   },
   "keywords": [
     "metrics",
