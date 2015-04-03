@@ -12,50 +12,56 @@ module.exports = function (apiKey) {
     query('closeio leads created last week',
       '/lead/',
       createdLastWeek,
-      'total_results'
+      'total_results',
+      metrics
     )
 
     query('closeio leads created 2 weeks ago',
       '/lead/',
       createdTwoWeeksAgo,
-      'total_results'
+      'total_results',
+      metrics
     )
 
     query('closeio opportunities created last week',
       '/opportunity/',
       createdLastWeek,
-      'total_results'
+      'total_results',
+      metrics
     )
 
     query('closeio opportunities created 2 weeks ago',
       '/opportunity/',
       createdTwoWeeksAgo,
-      'total_results'
+      'total_results',
+      metrics
     )
 
     query('closeio active opportunities total value',
       '/opportunity/',
       activeStatus,
-      'total_value_annualized'
+      'total_value_annualized',
+      metrics
     )
 
     query('closeio active opportunities expected value',
       '/opportunity/',
       activeStatus,
-      'expected_value_annualized'
+      'expected_value_annualized',
+      metrics
     )
 
-    setValueOfWonOpportunitiesThisMonthByUser()
+    setValueOfWonOpportunitiesThisMonthByUser(metrics)
   }
 
-  function query(key, path, query, prop) {
+  function query(key, path, query, prop, metrics) {
     closeio._get(path, { _fields: '', query: query })
       .then(function (results) {
         metrics.set(key, results[prop])
       }, debugError)
   }
 
-  function setValueOfWonOpportunitiesThisMonthByUser() {
+  function setValueOfWonOpportunitiesThisMonthByUser(metrics) {
     var date = new Date()
     date.setDate(1)
     var since = date.toISOString().split('T')[0]
